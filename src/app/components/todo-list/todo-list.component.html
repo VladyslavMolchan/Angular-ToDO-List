@@ -1,0 +1,23 @@
+<div class="mb-4 flex items-center bg-gray-200 p-4 rounded-lg shadow">
+  <input
+    #newTodoTitle
+    placeholder="New Task"
+    class="text-lg mr-2 p-2 border rounded border-gray-300 flex-1 focus:ring-2 focus:ring-blue-500"
+    maxlength="25"
+  />
+  <button
+    (click)="addTodo(newTodoTitle.value)"
+    class="bg-green-500 text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
+  >
+    Add Task
+  </button>
+</div>
+
+<ul class="space-y-4">
+  <li
+    *ngFor="let todo of todos"
+    class="bg-gray-200 p-4 rounded-lg shadow transition-transform transform hover:scale-105"
+  >
+    <app-todo-item [todo]="todo" (delete)="deleteTodo(todo.id)"></app-todo-item>
+  </li>
+</ul>

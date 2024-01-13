@@ -1,0 +1,57 @@
+<div
+  *ngIf="todo"
+  class="mb-4 bg-gray-200 p-4 rounded-lg shadow transition-transform transform hover:scale-105"
+>
+  <div class="flex items-center">
+    <input
+      type="checkbox"
+      [(ngModel)]="todo.completed"
+      class="form-checkbox mr-2 focus:ring-2 focus:ring-blue-500"
+      maxlength="25"
+    />
+    <span
+      [ngClass]="{ 'line-through text-gray-500': todo.completed }"
+      *ngIf="!editing"
+      class="mr-2 text-xl"
+      >{{ todo.title }}</span
+    >
+    <input
+      *ngIf="editing"
+      [(ngModel)]="editedTitle"
+      class="mr-2 p-2 border rounded border-gray-300 focus:ring-2 focus:ring-blue-500"
+      maxlength="25"
+    />
+  </div>
+  <div class="flex justify-center mt-2">
+    <button
+      (click)="onDeleteClick()"
+      class="bg-red-500 text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
+    >
+      Delete
+    </button>
+
+    <div class="ml-2 lg:flex lg:items-center lg:space-x-2">
+      <button
+        *ngIf="!editing"
+        (click)="onEditClick()"
+        class="bg-blue-500 text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
+      >
+        Edit
+      </button>
+      <button
+        *ngIf="editing"
+        (click)="onSaveEdit()"
+        class="bg-green-500 text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
+      >
+        Save
+      </button>
+      <button
+        *ngIf="editing"
+        (click)="onCancelEdit()"
+        class="bg-gray-500 text-white px-4 py-2 rounded transition-transform transform hover:scale-105"
+      >
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
